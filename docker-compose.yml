@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: feedbackdb
+      POSTGRES_USER: agent
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  mcp_server:
+    build: ./mcp_server
+    environment:
+      DB_HOST: postgres
+      DB_NAME: feedbackdb
+      DB_USER: agent
+      DB_PASSWORD: secret
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
