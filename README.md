@@ -15,24 +15,28 @@ The agent reads unprocessed feedback from a PostgreSQL database, uses Claude AI 
 ## How to run
 
 1. Clone the repo
-2. Add your Anthropic API key to `.env`:
 
+2. Add your Anthropic API key to `.env`:
+```
    ANTHROPIC_API_KEY=sk-ant-...
+```
 
 3. Start the infrastructure:
-
+```
    docker-compose up -d --build
+```
 
-4. Run the MCP server
+4. Run the MCP server:
+```
+   cd mcp_server
+   python server.py
+```
 
-  cd mcp_server
-  python server.py
-  
 5. Run the agent:
-
+```
    cd agent
    python agent.py
-
+```
 
 ## Tech stack
 
